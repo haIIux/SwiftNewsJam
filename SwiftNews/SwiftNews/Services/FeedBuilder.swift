@@ -23,7 +23,6 @@ protocol FeedBuilder {
 
 enum FeedURL {
     case sundell
-    case sarunw
 }
 
 extension FeedURL: FeedBuilder {
@@ -36,8 +35,6 @@ extension FeedURL: FeedBuilder {
         switch self {
         case .sundell :
             return URL(string: "https://swiftbysundell.com")!
-        case .sarunw :
-            return URL(string: "https://sarunw.com")!
         }
     }
 

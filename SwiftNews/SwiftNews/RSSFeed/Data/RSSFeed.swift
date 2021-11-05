@@ -5,7 +5,7 @@ import ComposableArchitecture
 struct RSSFeed: Equatable, Identifiable {
   var id: UUID
   var title: String
-  var url: URL
+  var url: URL // Possibly this needs to be defined as FeedBuilder so we can grab the FeedURL?
   var articles: [RSSArticle] = []
   
   var isFetchingData: Bool = false
@@ -26,6 +26,8 @@ struct RSSFeedEnvironment {
   var mainQueue: AnySchedulerOf<DispatchQueue>
   
   var fetchArticles: (URL) -> Effect<[RSSArticle], RSSFeedError>
+    // Once connected I believe this is how it would go...
+//    var fetchArticles: (FeedURL) -> Effect<[RSSArticle], RSSFeedError>
 }
 
 extension RSSFeedEnvironment {
