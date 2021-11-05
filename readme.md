@@ -14,3 +14,4 @@ Right now our goal minimum viable product (MVP) is to simply show the RSS feed i
 ## Contributors!
 - [Zack Eriksen](https://github.com/0xLeif)
 - [Rob Maltese](https://github.com/haIIux)
+- [Superbro](https://github.com/Superbro9)
