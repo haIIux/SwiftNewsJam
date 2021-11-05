@@ -132,8 +132,8 @@
 		5C460559273581D6009199E4 /* RSSList */ = {
 			isa = PBXGroup;
 			children = (
-				5C46055E273581FA009199E4 /* Data */,
 				5C46055D273581F0009199E4 /* Views */,
+				5C46055E273581FA009199E4 /* Data */,
 			);
 			path = RSSList;
 			sourceTree = "<group>";

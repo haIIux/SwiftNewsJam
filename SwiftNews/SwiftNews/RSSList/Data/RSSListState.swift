@@ -34,14 +34,14 @@ extension RSSListEnvironment {
     fetchFeeds: {
       Effect(
         value: (1 ... 100).map {
-          RSSFeed(id: .init(), title: "RSS Feed #\($0)", url: URL(string: "SomeURL")!)
+          RSSFeed(id: .init(), title: "RSS Feed #\($0)", description: "An awesome article", url: URL(string: "SomeURL")!)
         }
       )
     },
     fetchArticles: { _ in
       Effect(
         value: (1 ... 100).map {
-          RSSArticle(id: .init(), title: "Article #\($0)", contents: "Blah")
+          RSSArticle(id: .init(), title: "Article #\($0)", author: "John Sundell", description: "An awesome article", contents: "Blah")
         }
       )
     }
