@@ -43,8 +43,6 @@ struct RSSListView_Preview: PreviewProvider {
               RSSFeed(
                 id: .init(),
                 title: "Some RSS Feed",
-                description: "An awesome article",
-                url: URL(string: "SomeURL")!,
                 articles: [
                 ],
                 isFetchingData: false
@@ -61,8 +59,6 @@ struct RSSListView_Preview: PreviewProvider {
                   RSSFeed(
                     id: .init(),
                     title: "Some RSS Feed",
-                    description: "An awesome article",
-                    url: URL(string: "SomeURL")!,
                     articles: [
                     ],
                     isFetchingData: false
@@ -70,8 +66,6 @@ struct RSSListView_Preview: PreviewProvider {
                   RSSFeed(
                     id: .init(),
                     title: "Some other RSS Feed",
-                    description: "An awesome article",
-                    url: URL(string: "SomeURL")!,
                     articles: [
                     ],
                     isFetchingData: false
@@ -79,8 +73,6 @@ struct RSSListView_Preview: PreviewProvider {
                   RSSFeed(
                     id: .init(),
                     title: "Some weird RSS Feed",
-                    description: "An awesome article",
-                    url: URL(string: "SomeURL")!,
                     articles: [
                     ],
                     isFetchingData: false
