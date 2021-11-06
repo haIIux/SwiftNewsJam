@@ -1,13 +1,15 @@
 import ComposableArchitecture
+import SwiftUI
 
 // MARK: - State
 
 struct RSSFeed: Equatable, Identifiable {
-  var id: UUID
-  var title: String
-  var url: URL
-  var articles: [RSSArticle] = []
-  
+    var id: UUID
+    var title: String
+    var description: String
+    var url: URL
+    var articles: [RSSArticle] = []
+    
   var isFetchingData: Bool = false
 }
 
@@ -34,7 +36,7 @@ extension RSSFeedEnvironment {
     fetchArticles: { _ in
       Effect(
         value: (1 ... 100).map {
-          RSSArticle(id: .init(), title: "Article #\($0)", contents: "Blah")
+          RSSArticle(id: .init(), title: "Article #\($0)", author: "John Sundell", description: "An awesome article", contents: "Blah")
         }
       )
     }

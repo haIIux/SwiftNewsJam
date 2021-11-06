@@ -4,25 +4,35 @@ import SwiftUI
 struct RSSFeedView: View {
   let store: Store<RSSFeed, RSSFeedAction>
   
-  var body: some View {
-    WithViewStore(store) { viewStore in
-      VStack {
-        if viewStore.isFetchingData {
-          ProgressView()
-        } else {
-          Form {
-            ForEach(viewStore.articles) { article in
-              NavigationLink(article.title, destination: RSSArticleView(article: article))
+    var body: some View {
+        WithViewStore(store) { viewStore in
+            VStack {
+                if viewStore.isFetchingData {
+                    ProgressView()
+                } else {
+                    Form {
+                        ForEach(viewStore.articles) { article in
+                            NavigationLink(destination: RSSArticleView(article: article)) {
+                                VStack(alignment: .leading) {
+                                    Text(article.title)
+                                        .bold()
+                                    Spacer()
+                                    HStack {
+                                        Text(article.description)
+                                            .font(.subheadline)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
-          }
+            .onAppear {
+                viewStore.send(.fetchArticles)
+            }
+            .navigationTitle(viewStore.title)
         }
-      }
-      .onAppear {
-        viewStore.send(.fetchArticles)
-      }
-      .navigationTitle(viewStore.title)
     }
-  }
 }
 
 struct RSSFeedView_Preview: PreviewProvider {
@@ -33,6 +43,7 @@ struct RSSFeedView_Preview: PreviewProvider {
           initialState: RSSFeed(
             id: .init(),
             title: "Some RSS Feed",
+            description: "An awesome article",
             url: URL(string: "SomeURL")!,
             articles: [
             
@@ -45,9 +56,9 @@ struct RSSFeedView_Preview: PreviewProvider {
             fetchArticles: { _ in
               Effect(
                 value: [
-                  RSSArticle(id: .init(), title: "Some RSS Article", contents: "Blah"),
-                  RSSArticle(id: .init(), title: "Some other RSS Article", contents: "Blah"),
-                  RSSArticle(id: .init(), title: "Some werid RSS Article", contents: "Blah")
+                  RSSArticle(id: .init(), title: "Some RSS Article", author: "John Sundell", description: "An awesome article", contents: "Blah"),
+                  RSSArticle(id: .init(), title: "Some other RSS Article", author: "John Sundell", description: "An awesome article", contents: "Blah"),
+                  RSSArticle(id: .init(), title: "Some werid RSS Article", author: "John Sundell", description: "An awesome article", contents: "Blah")
                 ]
               )
             }
@@ -57,4 +68,3 @@ struct RSSFeedView_Preview: PreviewProvider {
     }
   }
 }
-
