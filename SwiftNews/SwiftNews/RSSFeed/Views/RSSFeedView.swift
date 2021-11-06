@@ -7,27 +7,38 @@ struct RSSFeedView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                if viewStore.isFetchingData {
+                if viewStore.isFetchingData && viewStore.articles.isEmpty {
                     ProgressView()
                 } else {
                     Form {
-                        ForEach(viewStore.articles) { article in
-                            NavigationLink(destination: RSSArticleView(article: article)) {
-                                VStack(alignment: .leading) {
-                                    Text(article.title)
-                                        .bold()
-                                    Spacer()
-                                    HStack {
-                                        Text(article.description)
-                                            .font(.caption)
+                        ForEachStore(
+                            store.scope(
+                                state: \.articles,
+                                action: RSSFeedAction.article
+                            ),
+                            content: { rssArticleStore in
+                                WithViewStore(rssArticleStore) { rssArticleViewStore in
+                                    NavigationLink(destination: RSSArticleView(store: rssArticleStore)) {
+                                        VStack(alignment: .leading) {
+                                            Text(rssArticleViewStore.title)
+                                                .bold()
+                                            Spacer()
+                                            HStack {
+                                                Text(rssArticleViewStore.description)
+                                                    .font(.caption)
+                                            }
+                                        }
                                     }
                                 }
                             }
-                        }
+                        )
                     }
                 }
             }
             .onAppear {
+                viewStore.send(.fetchArticles)
+            }
+            .refreshable {
                 viewStore.send(.fetchArticles)
             }
             .navigationTitle(viewStore.title)

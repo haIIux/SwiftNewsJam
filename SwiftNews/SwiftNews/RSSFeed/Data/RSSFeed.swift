@@ -6,10 +6,12 @@ import SwiftUI
 struct RSSFeed: Equatable, Identifiable {
     var id: UUID
     var title: String
-    var articles: [RSSArticle] = []
+    var articles: IdentifiedArrayOf<RSSArticle> = []
     
     var isFetchingData: Bool = false
     var feed: FeedURL = .sundell
+    
+    var favoriteArticles: [String] = []
 }
 
 // MARK: - Actions
@@ -17,6 +19,8 @@ struct RSSFeed: Equatable, Identifiable {
 enum RSSFeedAction: Equatable {
     case fetchArticles
     case loaded(articles: Result<[RSSArticle], FeedError>)
+    
+    case article(id: RSSArticle.ID, action: RSSArticleAction)
 }
 
 // MARK: - Environment
@@ -63,22 +67,54 @@ extension RSSFeedEnvironment {
 
 // MARK: - Reducer
 
-let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment> { state, action, environment in
-    switch action {
-    case .fetchArticles:
-        state.isFetchingData = true
-        return environment.fetchArticles(state.feed)
-            .receive(on: environment.mainQueue)
-            .catchToEffect(RSSFeedAction.loaded)
+let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment>
+    .combine(
+        rssArticleReducer
+            .forEach(
+                state: \RSSFeed.articles,
+                action: /RSSFeedAction.article,
+                environment: { _ in () }
+            ),
         
-    case .loaded(articles: .failure):
-        state.isFetchingData = false
-        // TODO: Handle failure
-        return .none
-        
-    case let .loaded(articles: .success(articles)):
-        state.isFetchingData = false
-        state.articles = articles
-        return .none
-    }
-}
+        Reducer { state, action, environment in
+            switch action {
+            case .fetchArticles:
+                state.isFetchingData = true
+                return environment.fetchArticles(state.feed)
+                    .receive(on: environment.mainQueue)
+                    .catchToEffect(RSSFeedAction.loaded)
+                
+            case .loaded(articles: .failure):
+                state.isFetchingData = false
+                // TODO: Handle failure
+                return .none
+                
+            case let .loaded(articles: .success(articles)):
+                state.isFetchingData = false
+                state.articles = IdentifiedArray(
+                    uniqueElements: articles.map { article in
+                        if state.favoriteArticles.contains(article.link) {
+                            return RSSArticle(
+                                id: article.id,
+                                title: article.title,
+                                description: article.description,
+                                link: article.link,
+                                pubDate: article.pubDate,
+                                content: article.content,
+                                isFavorite: true
+                            )
+                        } else {
+                            return article
+                        }
+                    }
+                )
+                return .none
+                
+            case .article:
+                state.favoriteArticles = state.articles.filter(\.isFavorite).map(\.link)
+                return .none
+            }
+            
+        }
+    )
+
