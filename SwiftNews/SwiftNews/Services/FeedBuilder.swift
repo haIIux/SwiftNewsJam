@@ -39,9 +39,10 @@ extension FeedURL: FeedBuilder {
                     RSSArticle(
                         id: .init(),
                         title: child.title.xml?.xmlValue ?? "Title",
-                        author: "The Internet",
                         description: child[.key("description")].xml?.xmlValue ?? "Desc.",
-                        contents: child[.key("content:encoded")].xml?.xmlValue ?? "Contents"
+                        link: child.link.xml?.xmlValue ?? "Link",
+                        pubDate: child.pubDate.xml?.xmlValue ?? "Date",
+                        content: child[.key("content:encoded")].xml?.xmlValue ?? "Contents"
                     )
                 }
             }
