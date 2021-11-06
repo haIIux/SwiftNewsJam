@@ -43,8 +43,6 @@ struct RSSFeedView_Preview: PreviewProvider {
           initialState: RSSFeed(
             id: .init(),
             title: "Some RSS Feed",
-            description: "An awesome article",
-            url: URL(string: "SomeURL")!,
             articles: [
             
             ],

@@ -6,12 +6,18 @@ struct SwiftNewsApp: App {
   var body: some Scene {
     WindowGroup {
       NavigationView {
-        RSSListView(
-          store: Store(
-            initialState: RSSListState(),
-            reducer: rssListReducer,
-            environment: .mock // TODO: .live
-          )
+        RSSFeedView(
+            store: Store(
+                initialState: RSSFeed(
+                    id: .init(),
+                    title: "swiftbysundell",
+                    articles: [],
+                    isFetchingData: false,
+                    feed: .sundell
+                ),
+                reducer: rssFeedReducer,
+                environment: .mock // .live
+            )
         )
       }
     }

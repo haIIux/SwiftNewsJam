@@ -34,7 +34,7 @@ extension RSSListEnvironment {
     fetchFeeds: {
       Effect(
         value: (1 ... 100).map {
-          RSSFeed(id: .init(), title: "RSS Feed #\($0)", description: "An awesome article", url: URL(string: "SomeURL")!)
+          RSSFeed(id: .init(), title: "RSS Feed #\($0)")
         }
       )
     },
