@@ -68,13 +68,3 @@ struct RSSFeedView_Preview: PreviewProvider {
     }
   }
 }
-    
-struct LessonRow: View {
-    let title: String
-    let author: String
-    let description: String
-    
-    var body: some View {
-        Text("Hello")
-    }
-}
