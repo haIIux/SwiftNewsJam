@@ -9,7 +9,7 @@ import Foundation
 
 /// Using protocol allows us to reuse the same setup for each feed we wish to include.  In our case, the `/rss` is typically always the same.
 protocol FeedBuilder {
-    var baseURL: URL { get }
+    var feedLinks: URL { get }
 }
 
 /// Using an enum to build out our desired feeds will allow for easier switching between feeds once we build in categories.
@@ -18,19 +18,13 @@ protocol FeedBuilder {
 /// - Parameter baseURL: Takes our `baseURL` that we decide to switch on which will be our feed host.
 ///
 
-enum FeedURL {
-    case sundell
-    case sarunw
+enum FeedURL: String {
+    case sundell = "https://swiftbysundell.com/rss"
+    case sarunw = "https://sarunw.com/feed"
 }
 
 extension FeedURL: FeedBuilder {
-    var baseURL: URL {
-        switch self {
-        case .sundell :
-            return URL(string: "https://swiftbysundell.com/rss")!
-        case .sarunw :
-            return URL(string: "https://sarunw.com/feed")!
-        }
+    var feedLinks: URL {
+        return URL(string: self.rawValue)!
     }
-
 }

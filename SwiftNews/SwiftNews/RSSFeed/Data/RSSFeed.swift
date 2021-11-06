@@ -1,14 +1,16 @@
 import ComposableArchitecture
+import Foundation
 
 // MARK: - State
 
 struct RSSFeed: Equatable, Identifiable {
-  var id: UUID
-  var title: String
-  var url: URL // Possibly this needs to be defined as FeedBuilder so we can grab the FeedURL?
-  var articles: [RSSArticle] = []
-  
-  var isFetchingData: Bool = false
+    var id: UUID
+    var title: String
+    var url: URL
+    var articles: [RSSArticle] = []
+    
+    var isFetchingData: Bool = false
+    var feeds: FeedURL = .sundell
 }
 
 // MARK: - Actions
@@ -23,11 +25,8 @@ enum RSSFeedAction: Equatable {
 // MARK: - Environment
 
 struct RSSFeedEnvironment {
-  var mainQueue: AnySchedulerOf<DispatchQueue>
-  
-  var fetchArticles: (URL) -> Effect<[RSSArticle], RSSFeedError>
-    // Once connected I believe this is how it would go...
-//    var fetchArticles: (FeedURL) -> Effect<[RSSArticle], RSSFeedError>
+    var mainQueue: AnySchedulerOf<DispatchQueue>
+    var fetchArticles: (URL) -> Effect<[RSSArticle], RSSFeedError>
 }
 
 extension RSSFeedEnvironment {
@@ -49,7 +48,10 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment> { state
   switch action {
   case .fetchArticles:
     state.isFetchingData = true
-    return environment.fetchArticles(state.url)
+      
+//      print(state.feeds)
+      
+      return environment.fetchArticles(state.feeds.feedLinks)
       .receive(on: environment.mainQueue)
       .catchToEffect(RSSFeedAction.loaded)
     
