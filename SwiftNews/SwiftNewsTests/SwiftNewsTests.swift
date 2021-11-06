@@ -20,20 +20,33 @@ class SwiftNewsTests: XCTestCase {
             let xml = XML(data: data!)!
             
             let title = xml.channel.xml?.title.xml?.xmlValue
-//            let description = xml.channel.xml?..xml?.xmlValue
+            let description = xml.channel.xml?[.key("description")].xml?.xmlValue
             let pubDate = xml.channel.xml?.pubDate.xml?.xmlValue
             
             let items = xml.channel.xml?.item.xmlList
             
-//            dump(xml)
-            
             XCTAssertNotNil(title)
             XCTAssertNotNil(pubDate)
+            XCTAssertNotNil(description)
             XCTAssertNotNil(items)
             
             let firstItem = items![0]
             
-            dump(firstItem)
+            print(firstItem.xmlChildren.map(\.xmlName))
+            
+            let firstItemGUID = firstItem.guid.xml?.xmlValue
+            let firstItemTitle = firstItem.title.xml?.xmlValue
+            let firstItemDescription = firstItem[.key("description")].xml?.xmlValue
+            let firstItemLink = firstItem.link.xml?.xmlValue
+            let firstItemPubDate = firstItem.pubDate.xml?.xmlValue
+            let firstItemContent = firstItem[.key("content:encoded")].xml?.xmlValue
+            
+            XCTAssertNotNil(firstItemGUID)
+            XCTAssertNotNil(firstItemTitle)
+            XCTAssertNotNil(firstItemLink)
+            XCTAssertNotNil(firstItemDescription)
+            XCTAssertNotNil(firstItemPubDate)
+            XCTAssertNotNil(firstItemContent)
         }
         
         task.resume()
