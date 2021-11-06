@@ -19,7 +19,7 @@ struct RSSFeedView: View {
                                     Spacer()
                                     HStack {
                                         Text(article.description)
-                                            .font(.subheadline)
+                                            .font(.caption)
                                     }
                                 }
                             }

@@ -2,13 +2,25 @@ import SwiftUI
 
 struct RSSArticleView: View {
     let article: RSSArticle
+    @State var isFavorited = false
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                Text(article.title)
-                    .bold()
-                    .font(.title2)
+                HStack {
+                    Text(article.title)
+                        .bold()
+                        .font(.title2)
+                    Spacer()
+                    Button {
+                        isFavorited.toggle()
+                        // MARK: - Add saving logic here. Address the toggle state to reflect accordingly if it's saved or not.
+                    } label: {
+                        Image(systemName: isFavorited ?  "star.fill" : "star")
+                            .font(.title2)
+                    }
+
+                }
                 Text(article.pubDate)
                     .font(.caption)
                     .padding(.bottom, 5)
