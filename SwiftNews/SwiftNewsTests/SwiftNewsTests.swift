@@ -8,26 +8,35 @@
 import XCTest
 @testable import SwiftNews
 
+import SwiftyXML
+
 class SwiftNewsTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testXMLSwiftBySundellParsing() throws {
+        let sema = DispatchSemaphore(value: 0)
+        
+        let url = URL(string: "https://swiftbysundell.com/feed.rss")!
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            defer { sema.signal() }
+            let xml = XML(data: data!)!
+            
+            let title = xml.channel.xml?.title.xml?.xmlValue
+//            let description = xml.channel.xml?..xml?.xmlValue
+            let pubDate = xml.channel.xml?.pubDate.xml?.xmlValue
+            
+            let items = xml.channel.xml?.item.xmlList
+            
+//            dump(xml)
+            
+            XCTAssertNotNil(title)
+            XCTAssertNotNil(pubDate)
+            XCTAssertNotNil(items)
+            
+            let firstItem = items![0]
+            
+            dump(firstItem)
         }
+        
+        task.resume()
+        sema.wait()
     }
-
 }
