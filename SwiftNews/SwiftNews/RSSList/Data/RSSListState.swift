@@ -41,7 +41,7 @@ extension RSSListEnvironment {
     fetchArticles: { _ in
       Effect(
         value: (1 ... 100).map {
-          RSSArticle(id: .init(), title: "Article #\($0)", contents: "Blah")
+            RSSArticle(id: .init(), title: "Article #\($0)", link: "https://www.swiftbysundell.com/podcast/108", content: "Blah")
         }
       )
     }

@@ -87,9 +87,9 @@ struct RSSListView_Preview: PreviewProvider {
             fetchArticles: { _ in
               Effect(
                 value: [
-                  RSSArticle(id: .init(), title: "Some RSS Article", contents: "Blah"),
-                  RSSArticle(id: .init(), title: "Some other RSS Article", contents: "Blah"),
-                  RSSArticle(id: .init(), title: "Some werid RSS Article", contents: "Blah")
+                    RSSArticle(id: .init(), title: "Some RSS Article", link: "https://www.swiftbysundell.com/podcast/108", content: "Blah"),
+                    RSSArticle(id: .init(), title: "Some other RSS Article", link: "https://www.swiftbysundell.com/podcast/108", content: "Blah"),
+                    RSSArticle(id: .init(), title: "Some werid RSS Article", link: "https://www.swiftbysundell.com/podcast/108", content: "Blah")
                 ]
               )
             }

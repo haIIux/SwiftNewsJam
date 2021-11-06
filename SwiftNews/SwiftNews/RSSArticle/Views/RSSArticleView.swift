@@ -9,7 +9,7 @@ struct RSSArticleView: View {
         .font(.title)
         .padding()
       Spacer()
-      Text(article.contents)
+      Text(article.content)
         .font(.body)
       Spacer()
     }
@@ -22,7 +22,8 @@ struct RSSArticleView_Preview: PreviewProvider {
       article: RSSArticle(
         id: .init(),
         title: "Some RSS Article",
-        contents: "Blah Blah Blah"
+        link: "https://swiftbysundell/podcast/108",
+        content: "Blah Blah Blah"
       )
     )
   }
