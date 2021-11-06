@@ -56,6 +56,15 @@
         }
       },
       {
+        "package": "SwiftSoup",
+        "repositoryURL": "https://github.com/scinfu/SwiftSoup.git",
+        "state": {
+          "branch": "master",
+          "revision": "02c63b7be50bda384f22c56c64d347231754a07e",
+          "version": null
+        }
+      },
+      {
         "package": "SwiftyXML",
         "repositoryURL": "https://github.com/chenyunguiMilook/SwiftyXML",
         "state": {
