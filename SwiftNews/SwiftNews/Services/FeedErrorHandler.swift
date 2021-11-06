@@ -17,7 +17,7 @@ import Foundation
  - unknown:
     Unknown handles all other errors.
  */
-enum FeedError: Error {
+enum FeedError: Error, Equatable {
     case parseError
     case errorCode(Int)
     case unknown

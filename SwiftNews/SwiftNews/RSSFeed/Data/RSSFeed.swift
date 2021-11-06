@@ -14,18 +14,16 @@ struct RSSFeed: Equatable, Identifiable {
 
 // MARK: - Actions
 
-struct RSSFeedError: Error, Equatable {}
-
 enum RSSFeedAction: Equatable {
     case fetchArticles
-    case loaded(articles: Result<[RSSArticle], RSSFeedError>)
+    case loaded(articles: Result<[RSSArticle], FeedError>)
 }
 
 // MARK: - Environment
 
 struct RSSFeedEnvironment {
     var mainQueue: AnySchedulerOf<DispatchQueue>
-    var fetchArticles: (URL) -> Effect<[RSSArticle], RSSFeedError>
+    var fetchArticles: (FeedURL) -> Effect<[RSSArticle], FeedError>
 }
 
 extension RSSFeedEnvironment {
@@ -39,6 +37,13 @@ extension RSSFeedEnvironment {
             )
         }
     )
+    
+    static var live = RSSFeedEnvironment(
+        mainQueue: .main,
+        fetchArticles: { feedURL in
+            feedURL.fetch()
+        }
+    )
 }
 
 // MARK: - Reducer
@@ -47,7 +52,7 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment> { state
     switch action {
     case .fetchArticles:
         state.isFetchingData = true
-        return environment.fetchArticles(state.feed.feedLinks)
+        return environment.fetchArticles(state.feed)
             .receive(on: environment.mainQueue)
             .catchToEffect(RSSFeedAction.loaded)
         
