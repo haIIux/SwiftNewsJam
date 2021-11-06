@@ -1,5 +1,6 @@
 import ComposableArchitecture
 import SwiftUI
+import SwiftSoup
 
 // MARK: - State
 
@@ -11,6 +12,7 @@ struct RSSFeed: Equatable, Identifiable {
     var isFetchingData: Bool = false
     var feed: FeedURL = .sundell
 }
+
 
 // MARK: - Actions
 
@@ -58,7 +60,6 @@ extension RSSFeedEnvironment {
             feedURL.fetch()
         }
     )
-    
 }
 
 // MARK: - Reducer
@@ -79,6 +80,7 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment> { state
     case let .loaded(articles: .success(articles)):
         state.isFetchingData = false
         state.articles = articles
+        
         return .none
     }
 }

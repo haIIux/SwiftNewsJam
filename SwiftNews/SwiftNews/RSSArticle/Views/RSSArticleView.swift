@@ -6,9 +6,11 @@ struct RSSArticleView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading) {
-                Text(article.title)
-                    .bold()
+                HStack {
+                    Text(article.title)
+                        .bold()
                     .font(.title2)
+                }
                 Text(article.pubDate)
                     .font(.caption)
                     .padding(.bottom, 5)

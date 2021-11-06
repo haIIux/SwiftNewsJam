@@ -9,6 +9,7 @@ import Combine
 import Foundation
 import ComposableArchitecture
 import SwiftyXML
+import SwiftSoup
 
 protocol FeedBuilder {
     var feedLink: URL { get }
@@ -47,6 +48,8 @@ extension FeedURL: FeedBuilder {
                 }
             }
             .eraseToEffect()
-        
     }
+    
+    
+        
 }

@@ -9,3 +9,4 @@ struct RSSArticle: Equatable, Identifiable {
     var pubDate: String
     var content: String
 }
+
