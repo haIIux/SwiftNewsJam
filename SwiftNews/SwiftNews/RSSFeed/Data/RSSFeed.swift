@@ -51,6 +51,7 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment> { state
       
 //      print(state.feeds)
       
+      #warning("I don't feel like this is right... but I'm unsure how to properly test this to see if it's right. Brain farts :( ")
       return environment.fetchArticles(state.feeds.feedLinks)
       .receive(on: environment.mainQueue)
       .catchToEffect(RSSFeedAction.loaded)
