@@ -5,5 +5,6 @@ struct RSSArticle: Equatable, Identifiable {
     
     var title: String
     var link: String
+    var pubDate: String
     var content: String
 }

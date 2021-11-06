@@ -9,6 +9,9 @@ struct RSSArticleView: View {
                 Text(article.title)
                     .bold()
                     .font(.title2)
+                Text(article.pubDate)
+                    .font(.caption)
+                    .padding(.bottom, 5)
                 Link("Swift By Sundell", destination: URL(string: article.link)!)
                     .font(.caption)
                     .padding(.bottom, 5)
@@ -27,6 +30,7 @@ struct RSSArticleView_Preview: PreviewProvider {
                 id: .init(),
                 title: "Some RSS Article",
                 link: "https://swiftbysundell/podcast/108",
+                pubDate: "Thu, 4 Nov 2021 19:35:00",
                 content: """
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Venenatis cras sed felis eget velit aliquet sagittis id consectetur. Massa sapien faucibus et molestie ac feugiat sed lectus. In hendrerit gravida rutrum quisque non tellus. Et ligula ullamcorper malesuada proin libero nunc consequat. Viverra adipiscing at in tellus integer. A condimentum vitae sapien pellentesque habitant morbi. Feugiat pretium nibh ipsum consequat nisl vel pretium lectus quam. Volutpat sed cras ornare arcu dui. Sapien eget mi proin sed libero enim sed faucibus. Faucibus turpis in eu mi bibendum neque egestas congue quisque.
                     
