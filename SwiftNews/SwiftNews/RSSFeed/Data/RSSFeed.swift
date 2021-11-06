@@ -6,11 +6,10 @@ import SwiftUI
 struct RSSFeed: Equatable, Identifiable {
     var id: UUID
     var title: String
-    var description: String
-    var url: URL
     var articles: [RSSArticle] = []
     
-  var isFetchingData: Bool = false
+    var isFetchingData: Bool = false
+    var feed: FeedURL = .sundell
 }
 
 // MARK: - Actions
@@ -25,9 +24,8 @@ enum RSSFeedAction: Equatable {
 // MARK: - Environment
 
 struct RSSFeedEnvironment {
-  var mainQueue: AnySchedulerOf<DispatchQueue>
-  
-  var fetchArticles: (URL) -> Effect<[RSSArticle], RSSFeedError>
+    var mainQueue: AnySchedulerOf<DispatchQueue>
+    var fetchArticles: (URL) -> Effect<[RSSArticle], RSSFeedError>
 }
 
 extension RSSFeedEnvironment {
@@ -49,10 +47,10 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment> { state
   switch action {
   case .fetchArticles:
     state.isFetchingData = true
-    return environment.fetchArticles(state.url)
+      return environment.fetchArticles(state.feeds.feedLinks)
       .receive(on: environment.mainQueue)
       .catchToEffect(RSSFeedAction.loaded)
-    
+      
   case .loaded(articles: .failure):
     state.isFetchingData = false
     // TODO: Handle failure
