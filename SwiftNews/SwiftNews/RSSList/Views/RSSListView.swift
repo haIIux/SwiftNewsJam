@@ -18,7 +18,7 @@ struct RSSListView: View {
               ),
               content: { feedStore in
                 WithViewStore(feedStore) { feedViewStore in
-                  NavigationLink(feedViewStore.title, destination: RSSFeedView(store: feedStore))
+                    NavigationLink(feedViewStore.title, destination: RSSFeedView(store: feedStore))
                 }
               }
             )
@@ -43,6 +43,7 @@ struct RSSListView_Preview: PreviewProvider {
               RSSFeed(
                 id: .init(),
                 title: "Some RSS Feed",
+                description: "An awesome article",
                 url: URL(string: "SomeURL")!,
                 articles: [
                 ],
@@ -60,6 +61,7 @@ struct RSSListView_Preview: PreviewProvider {
                   RSSFeed(
                     id: .init(),
                     title: "Some RSS Feed",
+                    description: "An awesome article",
                     url: URL(string: "SomeURL")!,
                     articles: [
                     ],
@@ -68,6 +70,7 @@ struct RSSListView_Preview: PreviewProvider {
                   RSSFeed(
                     id: .init(),
                     title: "Some other RSS Feed",
+                    description: "An awesome article",
                     url: URL(string: "SomeURL")!,
                     articles: [
                     ],
@@ -76,6 +79,7 @@ struct RSSListView_Preview: PreviewProvider {
                   RSSFeed(
                     id: .init(),
                     title: "Some weird RSS Feed",
+                    description: "An awesome article",
                     url: URL(string: "SomeURL")!,
                     articles: [
                     ],
@@ -87,9 +91,9 @@ struct RSSListView_Preview: PreviewProvider {
             fetchArticles: { _ in
               Effect(
                 value: [
-                  RSSArticle(id: .init(), title: "Some RSS Article", contents: "Blah"),
-                  RSSArticle(id: .init(), title: "Some other RSS Article", contents: "Blah"),
-                  RSSArticle(id: .init(), title: "Some werid RSS Article", contents: "Blah")
+                  RSSArticle(id: .init(), title: "Some RSS Article", author: "John Sundell", description: "An awesome article", contents: "Blah"),
+                  RSSArticle(id: .init(), title: "Some other RSS Article", author: "John Sundell", description: "An awesome article", contents: "Blah"),
+                  RSSArticle(id: .init(), title: "Some werid RSS Article",author: "John Sundell", description: "An awesome article", contents: "Blah")
                 ]
               )
             }

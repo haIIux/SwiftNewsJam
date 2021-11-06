@@ -22,6 +22,8 @@ struct RSSArticleView_Preview: PreviewProvider {
       article: RSSArticle(
         id: .init(),
         title: "Some RSS Article",
+        author: "John Sundell",
+        description: "An awesome article",
         contents: "Blah Blah Blah"
       )
     )

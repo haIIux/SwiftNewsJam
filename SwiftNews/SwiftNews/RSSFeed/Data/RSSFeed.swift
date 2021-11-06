@@ -1,16 +1,15 @@
 import ComposableArchitecture
-import Foundation
+import SwiftUI
 
 // MARK: - State
 
 struct RSSFeed: Equatable, Identifiable {
     var id: UUID
     var title: String
-    var url: URL
     var articles: [RSSArticle] = []
     
     var isFetchingData: Bool = false
-    var feeds: FeedURL = .sundell
+    var feed: FeedURL = .sundell
 }
 
 // MARK: - Actions
@@ -35,7 +34,7 @@ extension RSSFeedEnvironment {
     fetchArticles: { _ in
       Effect(
         value: (1 ... 100).map {
-          RSSArticle(id: .init(), title: "Article #\($0)", contents: "Blah")
+          RSSArticle(id: .init(), title: "Article #\($0)", author: "John Sundell", description: "An awesome article", contents: "Blah")
         }
       )
     }
@@ -48,9 +47,6 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment> { state
   switch action {
   case .fetchArticles:
     state.isFetchingData = true
-      
-//      print(state.feeds.feedLinks)
-      
       return environment.fetchArticles(state.feeds.feedLinks)
       .receive(on: environment.mainQueue)
       .catchToEffect(RSSFeedAction.loaded)
