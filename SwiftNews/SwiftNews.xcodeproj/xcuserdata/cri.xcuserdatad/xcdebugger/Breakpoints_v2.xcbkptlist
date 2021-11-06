@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "81D1A465-9921-40C7-8CAA-A2FD201200A6"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "23C797DF-5DB3-4450-B904-376903EBC93E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SwiftNewsTests/SwiftNewsTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "testXMLSwiftBySundellParsing()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "23C797DF-5DB3-4450-B904-376903EBC93E - 5f4e41af3fa3c01c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in SwiftNewsTests.SwiftNewsTests.testXMLSwiftBySundellParsing() throws -&gt; ()"
+                  moduleName = "SwiftNewsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cri/Desktop/SwiftNewsJam/SwiftNews/SwiftNewsTests/SwiftNewsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "2872">
+               </Location>
+               <Location
+                  uuid = "23C797DF-5DB3-4450-B904-376903EBC93E - 5f4e41af3fa3c01c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in SwiftNewsTests.SwiftNewsTests.testXMLSwiftBySundellParsing() throws -&gt; ()"
+                  moduleName = "SwiftNewsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cri/Desktop/SwiftNewsJam/SwiftNews/SwiftNewsTests/SwiftNewsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "2732">
+               </Location>
+               <Location
+                  uuid = "23C797DF-5DB3-4450-B904-376903EBC93E - 5f4e41af3fa3c01c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in SwiftNewsTests.SwiftNewsTests.testXMLSwiftBySundellParsing() throws -&gt; ()"
+                  moduleName = "SwiftNewsTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/cri/Desktop/SwiftNewsJam/SwiftNews/SwiftNewsTests/SwiftNewsTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "36"
+                  endingLineNumber = "36"
+                  offsetFromSymbolStart = "2686">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

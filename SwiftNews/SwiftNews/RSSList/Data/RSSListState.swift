@@ -25,7 +25,7 @@ struct RSSListEnvironment {
   var mainQueue: AnySchedulerOf<DispatchQueue>
   
   var fetchFeeds: () -> Effect<[RSSFeed], RSSListError>
-  var fetchArticles: (URL) -> Effect<[RSSArticle], RSSFeedError>
+  var fetchArticles: (FeedURL) -> Effect<[RSSArticle], FeedError>
 }
 
 extension RSSListEnvironment {
