@@ -49,13 +49,12 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment> { state
   case .fetchArticles:
     state.isFetchingData = true
       
-//      print(state.feeds)
+//      print(state.feeds.feedLinks)
       
-      #warning("I don't feel like this is right... but I'm unsure how to properly test this to see if it's right. Brain farts :( ")
       return environment.fetchArticles(state.feeds.feedLinks)
       .receive(on: environment.mainQueue)
       .catchToEffect(RSSFeedAction.loaded)
-    
+      
   case .loaded(articles: .failure):
     state.isFetchingData = false
     // TODO: Handle failure
