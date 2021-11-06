@@ -56,6 +56,15 @@
         }
       },
       {
+        "package": "SwiftyXML",
+        "repositoryURL": "https://github.com/chenyunguiMilook/SwiftyXML",
+        "state": {
+          "branch": null,
+          "revision": "30040f38675bc3a1666a0b0f6417adabaf26a3c6",
+          "version": "3.1.0"
+        }
+      },
+      {
         "package": "xctest-dynamic-overlay",
         "repositoryURL": "https://github.com/pointfreeco/xctest-dynamic-overlay",
         "state": {

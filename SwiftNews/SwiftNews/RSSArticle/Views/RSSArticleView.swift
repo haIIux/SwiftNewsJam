@@ -29,6 +29,7 @@ struct RSSArticleView_Preview: PreviewProvider {
             article: RSSArticle(
                 id: .init(),
                 title: "Some RSS Article",
+                description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
                 link: "https://swiftbysundell/podcast/108",
                 pubDate: "Thu, 4 Nov 2021 19:35:00",
                 content: """
