@@ -26,6 +26,7 @@ struct RSSListEnvironment {
     
     var fetchFeeds: () -> Effect<[RSSFeed], RSSListError>
     var fetchArticles: (FeedURL) -> Effect<[RSSArticle], FeedError>
+    var saveFavorite: (RSSArticle) -> Void
 }
 
 extension RSSListEnvironment {
@@ -56,6 +57,9 @@ extension RSSListEnvironment {
                     )
                 }
             )
+        },
+        saveFavorite: {
+            UserDefaults.standard.set($0.isFavorite, forKey: "favorite.\($0.link)")
         }
     )
 }
@@ -71,7 +75,8 @@ let rssListReducer = Reducer<RSSListState, RSSListAction, RSSListEnvironment>
                 environment: {
                     RSSFeedEnvironment(
                         mainQueue: $0.mainQueue,
-                        fetchArticles: $0.fetchArticles
+                        fetchArticles: $0.fetchArticles,
+                        saveFavorite: $0.saveFavorite
                     )
                 }
             ),
