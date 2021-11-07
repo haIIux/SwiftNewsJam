@@ -16,7 +16,7 @@ class Provider: TimelineProvider {
         SimpleEntry(
             date: Date(),
             articles: [
-                RSSArticle(id: .init(), title: "Some RSS Article", description: "Blah Blah Blah", link: "some-link", pubDate: "Today", content: "...")
+                RSSArticle(id: .init(), title: "Lorem ipsum dolor sit amet.", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pharetra quis turpis id sollicitudin. Praesent id turpis lorem. Vestibulum pellentesque.", link: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in.", pubDate: "Today", content: "...")
             ]
         )
     }
@@ -27,7 +27,7 @@ class Provider: TimelineProvider {
                 SimpleEntry(
                     date: Date(),
                     articles: [
-                        RSSArticle(id: .init(), title: "Some RSS Article", description: "Blah Blah Blah", link: "some-link", pubDate: "Today", content: "...")
+                        RSSArticle(id: .init(), title: "Lorem ipsum dolor sit amet.", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pharetra quis turpis id sollicitudin. Praesent id turpis lorem. Vestibulum pellentesque.", link: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in.", pubDate: "Today", content: "...")
                     ]
                 )
             )
@@ -146,8 +146,8 @@ struct SwiftNewsWidget: Widget {
                 entry: entry
             )
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Swift News Widget")
+        .description("These widgets show the title and publishing date of the most recent article. The medium widget has a description for the article.")
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
