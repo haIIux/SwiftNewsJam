@@ -7,27 +7,76 @@ struct RSSFeedView: View {
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                if viewStore.isFetchingData {
+                if viewStore.isFetchingData && viewStore.articles.isEmpty {
                     ProgressView()
                 } else {
                     Form {
-                        ForEach(viewStore.articles) { article in
-                            NavigationLink(destination: RSSArticleView(article: article)) {
-                                VStack(alignment: .leading) {
-                                    Text(article.title)
-                                        .bold()
-                                    Spacer()
-                                    HStack {
-                                        Text(article.description)
-                                            .font(.caption)
-                                    }
+                        if !viewStore.favoriteArticles.isEmpty {
+                            Section(
+                                content: {
+                                    ForEachStore(
+                                        store.scope(
+                                            state: \.favoriteArticles,
+                                            action: RSSFeedAction.favoriteArticle
+                                        ),
+                                        content: { rssArticleStore in
+                                            WithViewStore(rssArticleStore) { rssArticleViewStore in
+                                                NavigationLink(destination: RSSArticleView(store: rssArticleStore)) {
+                                                    VStack(alignment: .leading) {
+                                                        HStack {
+                                                            Text(rssArticleViewStore.title)
+                                                                .bold()
+                                                        }
+                                                        Spacer()
+                                                        
+                                                        Text(rssArticleViewStore.description)
+                                                            .font(.caption)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    )
+                                },
+                                header: {
+                                    Text("Favorites")
                                 }
+                            )
+                        }
+                        
+                        if !viewStore.nonFavoriteArticles.isEmpty {
+                            Section {
+                                ForEachStore(
+                                    store.scope(
+                                        state: \.nonFavoriteArticles,
+                                        action: RSSFeedAction.nonFavoriteArticle
+                                    ),
+                                    content: { rssArticleStore in
+                                        WithViewStore(rssArticleStore) { rssArticleViewStore in
+                                            NavigationLink(destination: RSSArticleView(store: rssArticleStore)) {
+                                                VStack(alignment: .leading) {
+                                                    HStack {
+                                                        Text(rssArticleViewStore.title)
+                                                            .bold()
+                                                        
+                                                    }
+                                                    Spacer()
+                                                    
+                                                    Text(rssArticleViewStore.description)
+                                                        .font(.caption)
+                                                }
+                                            }
+                                        }
+                                    }
+                                )
                             }
                         }
                     }
                 }
             }
             .onAppear {
+                viewStore.send(.didAppear)
+            }
+            .refreshable {
                 viewStore.send(.fetchArticles)
             }
             .navigationTitle(viewStore.title)
@@ -101,6 +150,9 @@ struct RSSFeedView_Preview: PreviewProvider {
                                     )
                                 ]
                             )
+                        },
+                        saveFavorite: {
+                            UserDefaults.standard.set($0.isFavorite, forKey: "favorite.\($0.link)")
                         }
                     )
                 )
