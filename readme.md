@@ -7,9 +7,9 @@ The idea behind this app was to provide the SwiftUI community a single app to cu
 Right now our goal minimum viable product (MVP) is to simply show the RSS feed in a readable format from the one, the only [John Sundell](https://swiftbysundell). 
 
 ## Goal Features!
-- Favoriting Articles
-- Multiple Feed Categories
-- Widget!
+- [x] Favoriting Articles
+- [x] Widget!
+- [ ] Multiple Feed Categories
 
 ## Contributors!
 - [Zach Eriksen](https://github.com/0xLeif)
