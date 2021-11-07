@@ -1,4 +1,5 @@
 import Foundation
+import SwiftSoup
 
 struct RSSArticle: Equatable, Identifiable {
     var id: UUID
@@ -8,5 +9,6 @@ struct RSSArticle: Equatable, Identifiable {
     var link: String
     var pubDate: String
     var content: String
+    var document: Document?
 }
 
