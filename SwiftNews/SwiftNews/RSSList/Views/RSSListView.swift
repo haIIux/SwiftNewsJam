@@ -130,6 +130,9 @@ struct RSSListView_Preview: PreviewProvider {
                                     )
                                 ]
                             )
+                        },
+                        saveFavorite: {
+                            UserDefaults.standard.set($0.isFavorite, forKey: "favorite.\($0.link)")
                         }
                     )
                 )

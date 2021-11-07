@@ -11,16 +11,22 @@ struct RSSFeed: Equatable, Identifiable {
     var isFetchingData: Bool = false
     var feed: FeedURL = .sundell
     
-    var favoriteArticles: [String] = []
+    var favoriteArticles: IdentifiedArrayOf<RSSArticle> = []
+    var nonFavoriteArticles: IdentifiedArrayOf<RSSArticle> = []
+    
+    var isFirstLoad: Bool = true
 }
 
 // MARK: - Actions
 
 enum RSSFeedAction: Equatable {
+    case didAppear
+    case updateFavoriteSections
     case fetchArticles
     case loaded(articles: Result<[RSSArticle], FeedError>)
     
-    case article(id: RSSArticle.ID, action: RSSArticleAction)
+    case favoriteArticle(id: RSSArticle.ID, action: RSSArticleAction)
+    case nonFavoriteArticle(id: RSSArticle.ID, action: RSSArticleAction)
 }
 
 // MARK: - Environment
@@ -28,6 +34,7 @@ enum RSSFeedAction: Equatable {
 struct RSSFeedEnvironment {
     var mainQueue: AnySchedulerOf<DispatchQueue>
     var fetchArticles: (FeedURL) -> Effect<[RSSArticle], FeedError>
+    var saveFavorite: (RSSArticle) -> Void
 }
 
 extension RSSFeedEnvironment {
@@ -53,6 +60,9 @@ extension RSSFeedEnvironment {
                     )
                 }
             )
+        },
+        saveFavorite: {
+            UserDefaults.standard.set($0.isFavorite, forKey: "favorite.\($0.link)")
         }
     )
     
@@ -60,6 +70,9 @@ extension RSSFeedEnvironment {
         mainQueue: .main,
         fetchArticles: { feedURL in
             feedURL.fetch()
+        },
+        saveFavorite: {
+            UserDefaults.standard.set($0.isFavorite, forKey: "favorite.\($0.link)")
         }
     )
     
@@ -71,15 +84,47 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment>
     .combine(
         rssArticleReducer
             .forEach(
-                state: \RSSFeed.articles,
-                action: /RSSFeedAction.article,
-                environment: { _ in () }
+                state: \RSSFeed.favoriteArticles,
+                action: /RSSFeedAction.favoriteArticle,
+                environment: {
+                    RSSArticleEnvironment(
+                        mainQueue: $0.mainQueue,
+                        saveFavorite: $0.saveFavorite
+                    )
+                }
+            ),
+        
+        rssArticleReducer
+            .forEach(
+                state: \RSSFeed.nonFavoriteArticles,
+                action: /RSSFeedAction.nonFavoriteArticle,
+                environment: {
+                    RSSArticleEnvironment(
+                        mainQueue: $0.mainQueue,
+                        saveFavorite: $0.saveFavorite
+                    )
+                }
             ),
         
         Reducer { state, action, environment in
             switch action {
+            case .didAppear:
+                return state.isFirstLoad ? Effect(value: .fetchArticles) : Effect(value: .updateFavoriteSections)
+                
+            case .updateFavoriteSections:
+                state.favoriteArticles.forEach {
+                    state.articles.updateOrAppend($0)
+                }
+                state.nonFavoriteArticles.forEach {
+                    state.articles.updateOrAppend($0)
+                }
+                state.favoriteArticles = state.articles.filter(\.isFavorite)
+                state.nonFavoriteArticles = state.articles.filter { !$0.isFavorite }
+                return .none
+                
             case .fetchArticles:
                 state.isFetchingData = true
+                state.isFirstLoad = false
                 return environment.fetchArticles(state.feed)
                     .receive(on: environment.mainQueue)
                     .catchToEffect(RSSFeedAction.loaded)
@@ -93,25 +138,22 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment>
                 state.isFetchingData = false
                 state.articles = IdentifiedArray(
                     uniqueElements: articles.map { article in
-                        if state.favoriteArticles.contains(article.link) {
-                            return RSSArticle(
-                                id: article.id,
-                                title: article.title,
-                                description: article.description,
-                                link: article.link,
-                                pubDate: article.pubDate,
-                                content: article.content,
-                                isFavorite: true
-                            )
-                        } else {
-                            return article
-                        }
+                        RSSArticle(
+                            id: article.id,
+                            title: article.title,
+                            description: article.description,
+                            link: article.link,
+                            pubDate: article.pubDate,
+                            content: article.content,
+                            isFavorite: UserDefaults.standard.bool(forKey: "favorite.\(article.link)")
+                        )
                     }
+                        .sorted { $0.isFavorite && !$1.isFavorite }
                 )
-                return .none
                 
-            case .article:
-                state.favoriteArticles = state.articles.filter(\.isFavorite).map(\.link)
+                return Effect(value: .updateFavoriteSections)
+                
+            case .nonFavoriteArticle, .favoriteArticle:
                 return .none
             }
             

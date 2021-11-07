@@ -55,7 +55,7 @@ struct RSSArticleView_Preview: PreviewProvider {
                 """
                 ),
                 reducer: rssArticleReducer,
-                environment: ()
+                environment: .mock
             )
         )
     }
