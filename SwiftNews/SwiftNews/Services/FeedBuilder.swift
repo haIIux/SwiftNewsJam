@@ -28,28 +28,44 @@ extension FeedURL: FeedBuilder {
     }
     
     func fetch() -> Effect<[RSSArticle], FeedError> {
-        URLSession.shared
-            .dataTaskPublisher(for: feedLink)
-            .mapError { _ in
-                FeedError.unknown
-            }
-            .compactMap {
-                let xml = XML(data: $0.data)!
-                
-                return xml.channel.xml?.item.xmlList?.compactMap { (child) -> RSSArticle in
-                    RSSArticle(
-                        id: .init(),
-                        title: child.title.xml?.xmlValue ?? "Title",
-                        description: child[.key("description")].xml?.xmlValue ?? "Desc.",
-                        link: child.link.xml?.xmlValue ?? "Link",
-                        pubDate: child.pubDate.xml?.xmlValue ?? "Date",
-                        content: child[.key("content:encoded")].xml?.xmlValue ?? "Contents"
-                    )
+            URLSession.shared
+                .dataTaskPublisher(for: feedLink)
+                .mapError { _ in
+                    FeedError.unknown
                 }
-            }
-            .eraseToEffect()
+                .compactMap {
+                    let xml = XML(data: $0.data)!
+
+                    return xml.channel.xml?.item.xmlList?.compactMap { child -> RSSArticle? in
+                        guard
+                            let content = child[.key("content:encoded")].xml?.xmlValue,
+                            let document = createDocument(from: content)
+                        else { return nil }
+
+                        return RSSArticle(
+                            id: .init(),
+                            title: child.title.xml?.xmlValue ?? "Title",
+                            description: child[.key("description")].xml?.xmlValue ?? "Desc.",
+                            link: child.link.xml?.xmlValue ?? "Link",
+                            pubDate: child.pubDate.xml?.xmlValue ?? "Date",
+                            content: content,
+                            document: document
+                        )
+                    }
+                }
+                .eraseToEffect()
+        }
+
+    private func createDocument(from content: String) -> Document? {
+        do {
+            return try SwiftSoup.parse(content)
+        } catch Exception.Error(let type, let message) {
+            print("Message: \(message) of type : \(type).")
+        } catch {
+            print("Unknown error.")
+        }
+        return nil
     }
-    
     
         
 }
