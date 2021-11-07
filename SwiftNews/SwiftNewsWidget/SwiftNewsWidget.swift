@@ -113,7 +113,6 @@ struct SwiftNewsWidgetEntryView : View {
                     .padding(.bottom, 7)
                     .padding(.leading, 5)
                     .frame(alignment: .center)
-                    .background(.red)
                 
                 Text(entry.articles.first?.pubDate ?? "Loading...")
                     .font(.subheadline)

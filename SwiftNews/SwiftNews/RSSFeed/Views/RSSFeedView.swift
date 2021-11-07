@@ -157,6 +157,7 @@ struct RSSFeedView_Preview: PreviewProvider {
                     )
                 )
             )
+            
         }
     }
 }
