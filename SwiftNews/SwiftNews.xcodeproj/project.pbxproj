@@ -19,6 +19,19 @@
 		5C460554273581B5009199E4 /* RSSArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C460553273581B5009199E4 /* RSSArticleView.swift */; };
 		5C460556273581BA009199E4 /* RSSArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C460555273581BA009199E4 /* RSSArticle.swift */; };
 		5C4605612735938A009199E4 /* SwiftNewsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4605602735938A009199E4 /* SwiftNewsApp.swift */; };
+		899DBF7027385DA000F41A40 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899DBF5827385D7800F41A40 /* WidgetKit.framework */; };
+		899DBF7127385DA000F41A40 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 899DBF5A27385D7800F41A40 /* SwiftUI.framework */; };
+		899DBF7427385DA000F41A40 /* SwiftNewsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899DBF7327385DA000F41A40 /* SwiftNewsWidget.swift */; };
+		899DBF7627385DA100F41A40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 899DBF7527385DA100F41A40 /* Assets.xcassets */; };
+		899DBF7A27385DA100F41A40 /* SwiftNewsWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 899DBF6F27385DA000F41A40 /* SwiftNewsWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		899DBF8227385DB400F41A40 /* FeedBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D640A27359ED20030C454 /* FeedBuilder.swift */; };
+		899DBF8327385DB800F41A40 /* FeedErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D640C2735A31B0030C454 /* FeedErrorHandler.swift */; };
+		899DBF8427385DBA00F41A40 /* RSSFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C46054F273581A9009199E4 /* RSSFeedView.swift */; };
+		899DBF8527385DBD00F41A40 /* RSSFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C460551273581AF009199E4 /* RSSFeed.swift */; };
+		899DBF8627385DBF00F41A40 /* RSSArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C460553273581B5009199E4 /* RSSArticleView.swift */; };
+		899DBF8727385DC100F41A40 /* RSSArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C460555273581BA009199E4 /* RSSArticle.swift */; };
+		899DBF8827385DC300F41A40 /* RSSListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C46054B27358197009199E4 /* RSSListView.swift */; };
+		899DBF8927385DC600F41A40 /* RSSListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C46054D273581A0009199E4 /* RSSListState.swift */; };
 		B2063F68273712EB005EA377 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = B2063F67273712EB005EA377 /* SwiftSoup */; };
 		B24D640B27359ED20030C454 /* FeedBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D640A27359ED20030C454 /* FeedBuilder.swift */; };
 		B24D640D2735A31B0030C454 /* FeedErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D640C2735A31B0030C454 /* FeedErrorHandler.swift */; };
@@ -32,7 +45,28 @@
 			remoteGlobalIDString = 5C46051127358025009199E4;
 			remoteInfo = SwiftNews;
 		};
+		899DBF7827385DA100F41A40 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5C46050A27358025009199E4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 899DBF6E27385DA000F41A40;
+			remoteInfo = SwiftNewsWidgetExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		899DBF6427385D7900F41A40 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				899DBF7A27385DA100F41A40 /* SwiftNewsWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		5C46051227358025009199E4 /* SwiftNews.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftNews.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,6 +81,12 @@
 		5C460553273581B5009199E4 /* RSSArticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSArticleView.swift; sourceTree = "<group>"; };
 		5C460555273581BA009199E4 /* RSSArticle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSSArticle.swift; sourceTree = "<group>"; };
 		5C4605602735938A009199E4 /* SwiftNewsApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftNewsApp.swift; sourceTree = "<group>"; };
+		899DBF5827385D7800F41A40 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		899DBF5A27385D7800F41A40 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		899DBF6F27385DA000F41A40 /* SwiftNewsWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SwiftNewsWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		899DBF7327385DA000F41A40 /* SwiftNewsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftNewsWidget.swift; sourceTree = "<group>"; };
+		899DBF7527385DA100F41A40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		899DBF7727385DA100F41A40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B24D640A27359ED20030C454 /* FeedBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBuilder.swift; sourceTree = "<group>"; };
 		B24D640C2735A31B0030C454 /* FeedErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedErrorHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -69,6 +109,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		899DBF6C27385DA000F41A40 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				899DBF7127385DA000F41A40 /* SwiftUI.framework in Frameworks */,
+				899DBF7027385DA000F41A40 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -77,6 +126,8 @@
 			children = (
 				5C46051427358025009199E4 /* SwiftNews */,
 				5C46052527358027009199E4 /* SwiftNewsTests */,
+				899DBF7227385DA000F41A40 /* SwiftNewsWidget */,
+				899DBF5727385D7800F41A40 /* Frameworks */,
 				5C46051327358025009199E4 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -86,6 +137,7 @@
 			children = (
 				5C46051227358025009199E4 /* SwiftNews.app */,
 				5C46052227358027009199E4 /* SwiftNewsTests.xctest */,
+				899DBF6F27385DA000F41A40 /* SwiftNewsWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -195,6 +247,25 @@
 			path = Data;
 			sourceTree = "<group>";
 		};
+		899DBF5727385D7800F41A40 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				899DBF5827385D7800F41A40 /* WidgetKit.framework */,
+				899DBF5A27385D7800F41A40 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		899DBF7227385DA000F41A40 /* SwiftNewsWidget */ = {
+			isa = PBXGroup;
+			children = (
+				899DBF7327385DA000F41A40 /* SwiftNewsWidget.swift */,
+				899DBF7527385DA100F41A40 /* Assets.xcassets */,
+				899DBF7727385DA100F41A40 /* Info.plist */,
+			);
+			path = SwiftNewsWidget;
+			sourceTree = "<group>";
+		};
 		B24D640627359CC60030C454 /* Services */ = {
 			isa = PBXGroup;
 			children = (
@@ -214,10 +285,13 @@
 				5C46050E27358025009199E4 /* Sources */,
 				5C46050F27358025009199E4 /* Frameworks */,
 				5C46051027358025009199E4 /* Resources */,
+				899DBF6427385D7900F41A40 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				899DBF8B27385DFC00F41A40 /* PBXTargetDependency */,
+				899DBF7927385DA100F41A40 /* PBXTargetDependency */,
 			);
 			name = SwiftNews;
 			packageProductDependencies = (
@@ -247,6 +321,25 @@
 			productReference = 5C46052227358027009199E4 /* SwiftNewsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		899DBF6E27385DA000F41A40 /* SwiftNewsWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 899DBF7B27385DA100F41A40 /* Build configuration list for PBXNativeTarget "SwiftNewsWidgetExtension" */;
+			buildPhases = (
+				899DBF6B27385DA000F41A40 /* Sources */,
+				899DBF6C27385DA000F41A40 /* Frameworks */,
+				899DBF6D27385DA000F41A40 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				899DBF8127385DAC00F41A40 /* PBXTargetDependency */,
+				899DBF7F27385DA800F41A40 /* PBXTargetDependency */,
+			);
+			name = SwiftNewsWidgetExtension;
+			productName = SwiftNewsWidgetExtension;
+			productReference = 899DBF6F27385DA000F41A40 /* SwiftNewsWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -263,6 +356,9 @@
 					5C46052127358027009199E4 = {
 						CreatedOnToolsVersion = 13.0;
 						TestTargetID = 5C46051127358025009199E4;
+					};
+					899DBF6E27385DA000F41A40 = {
+						CreatedOnToolsVersion = 13.0;
 					};
 				};
 			};
@@ -286,6 +382,7 @@
 			targets = (
 				5C46051127358025009199E4 /* SwiftNews */,
 				5C46052127358027009199E4 /* SwiftNewsTests */,
+				899DBF6E27385DA000F41A40 /* SwiftNewsWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -304,6 +401,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		899DBF6D27385DA000F41A40 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				899DBF7627385DA100F41A40 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +439,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		899DBF6B27385DA000F41A40 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				899DBF8627385DBF00F41A40 /* RSSArticleView.swift in Sources */,
+				899DBF7427385DA000F41A40 /* SwiftNewsWidget.swift in Sources */,
+				899DBF8327385DB800F41A40 /* FeedErrorHandler.swift in Sources */,
+				899DBF8827385DC300F41A40 /* RSSListView.swift in Sources */,
+				899DBF8727385DC100F41A40 /* RSSArticle.swift in Sources */,
+				899DBF8227385DB400F41A40 /* FeedBuilder.swift in Sources */,
+				899DBF8527385DBD00F41A40 /* RSSFeed.swift in Sources */,
+				899DBF8927385DC600F41A40 /* RSSListState.swift in Sources */,
+				899DBF8427385DBA00F41A40 /* RSSFeedView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -341,6 +462,23 @@
 			isa = PBXTargetDependency;
 			target = 5C46051127358025009199E4 /* SwiftNews */;
 			targetProxy = 5C46052327358027009199E4 /* PBXContainerItemProxy */;
+		};
+		899DBF7927385DA100F41A40 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 899DBF6E27385DA000F41A40 /* SwiftNewsWidgetExtension */;
+			targetProxy = 899DBF7827385DA100F41A40 /* PBXContainerItemProxy */;
+		};
+		899DBF7F27385DA800F41A40 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 899DBF7E27385DA800F41A40 /* ComposableArchitecture */;
+		};
+		899DBF8127385DAC00F41A40 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 899DBF8027385DAC00F41A40 /* SwiftyXML */;
+		};
+		899DBF8B27385DFC00F41A40 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 899DBF8A27385DFC00F41A40 /* SwiftSoup */;
 		};
 /* End PBXTargetDependency section */
 
@@ -464,6 +602,7 @@
 		5C46053727358027009199E4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -494,6 +633,7 @@
 		5C46053827358027009199E4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -571,6 +711,60 @@
 			};
 			name = Release;
 		};
+		899DBF7C27385DA100F41A40 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8M8SAX62V2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwiftNewsWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SwiftNewsWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Ten.Eight.Studios.SwiftUIJam.SwiftNews.SwiftNewsWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		899DBF7D27385DA100F41A40 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8M8SAX62V2;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwiftNewsWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SwiftNewsWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Ten.Eight.Studios.SwiftUIJam.SwiftNews.SwiftNewsWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -597,6 +791,15 @@
 			buildConfigurations = (
 				5C46053A27358027009199E4 /* Debug */,
 				5C46053B27358027009199E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		899DBF7B27385DA100F41A40 /* Build configuration list for PBXNativeTarget "SwiftNewsWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				899DBF7C27385DA100F41A40 /* Debug */,
+				899DBF7D27385DA100F41A40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -640,6 +843,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5C4605472735807D009199E4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		899DBF7E27385DA800F41A40 /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5C4605472735807D009199E4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
+		899DBF8027385DAC00F41A40 /* SwiftyXML */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 00A40FB92735F579004258A6 /* XCRemoteSwiftPackageReference "SwiftyXML" */;
+			productName = SwiftyXML;
+		};
+		899DBF8A27385DFC00F41A40 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B2063F66273712EB005EA377 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
 		};
 		B2063F67273712EB005EA377 /* SwiftSoup */ = {
 			isa = XCSwiftPackageProductDependency;
