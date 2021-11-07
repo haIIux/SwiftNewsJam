@@ -83,9 +83,55 @@ struct SimpleEntry: TimelineEntry {
 struct SwiftNewsWidgetEntryView : View {
     var entry: Provider.Entry
     
+    @Environment(\.widgetFamily) var family
+    
+    @ViewBuilder
     var body: some View {
-        VStack {
-            Text(entry.articles.first?.title ?? "Loading...")
+        switch family {
+        case .systemSmall:
+            VStack(alignment: .leading) {
+                Text(entry.articles.first?.title ?? "Loading...")
+                    .bold()
+                    .padding(.top, 10)
+                    .padding(.leading, 5)
+                
+                Text(entry.articles.first?.pubDate ?? "Loading...")
+                    .font(.subheadline)
+                    .padding(.bottom, 8)
+                    .padding(.leading, 5)
+            }
+        case .systemMedium:
+            VStack(alignment: .leading) {
+                Text(entry.articles.first?.title ?? "Loading...")
+                    .bold()
+                    .padding(.top, 10)
+                    .padding(.leading, 5)
+                    .padding(.bottom, 2)
+                
+                Text(entry.articles.first?.description ?? "Loading...")
+                    .font(.subheadline)
+                    .padding(.bottom, 7)
+                    .padding(.leading, 5)
+                    .frame(alignment: .center)
+                    .background(.red)
+                
+                Text(entry.articles.first?.pubDate ?? "Loading...")
+                    .font(.subheadline)
+                    .padding(.bottom, 8)
+                    .padding(.leading, 5)
+            }
+        default:
+            VStack(alignment: .leading) {
+                Text(entry.articles.first?.title ?? "Loading...")
+                    .bold()
+                    .padding(.top, 10)
+                    .padding(.leading, 5)
+                
+                Text(entry.articles.first?.pubDate ?? "Loading...")
+                    .font(.subheadline)
+                    .padding(.bottom, 8)
+                    .padding(.leading, 5)
+            }
         }
     }
 }
@@ -102,5 +148,6 @@ struct SwiftNewsWidget: Widget {
         }
         .configurationDisplayName("My Widget")
         .description("This is an example widget.")
+        .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
