@@ -59,9 +59,9 @@
         "package": "SwiftSoup",
         "repositoryURL": "https://github.com/scinfu/SwiftSoup.git",
         "state": {
-          "branch": "master",
+          "branch": null,
           "revision": "02c63b7be50bda384f22c56c64d347231754a07e",
-          "version": null
+          "version": "2.3.3"
         }
       },
       {
