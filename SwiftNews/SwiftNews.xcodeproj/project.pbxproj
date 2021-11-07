@@ -38,6 +38,7 @@
 		B24D640B27359ED20030C454 /* FeedBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D640A27359ED20030C454 /* FeedBuilder.swift */; };
 		B24D640D2735A31B0030C454 /* FeedErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D640C2735A31B0030C454 /* FeedErrorHandler.swift */; };
 		B2D461B327389AA800B6A614 /* RSSCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D461B227389AA800B6A614 /* RSSCategoryView.swift */; };
+		B2D461B527389BC900B6A614 /* CategoryTemp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D461B427389BC900B6A614 /* CategoryTemp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		B24D640A27359ED20030C454 /* FeedBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedBuilder.swift; sourceTree = "<group>"; };
 		B24D640C2735A31B0030C454 /* FeedErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedErrorHandler.swift; sourceTree = "<group>"; };
 		B2D461B227389AA800B6A614 /* RSSCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSCategoryView.swift; sourceTree = "<group>"; };
+		B2D461B427389BC900B6A614 /* CategoryTemp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTemp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				5C46054F273581A9009199E4 /* RSSFeedView.swift */,
+				B2D461B427389BC900B6A614 /* CategoryTemp.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -455,6 +458,7 @@
 			files = (
 				5C460554273581B5009199E4 /* RSSArticleView.swift in Sources */,
 				B24D640D2735A31B0030C454 /* FeedErrorHandler.swift in Sources */,
+				B2D461B527389BC900B6A614 /* CategoryTemp.swift in Sources */,
 				5C46054E273581A0009199E4 /* RSSListState.swift in Sources */,
 				5C4605612735938A009199E4 /* SwiftNewsApp.swift in Sources */,
 				5C460556273581BA009199E4 /* RSSArticle.swift in Sources */,
