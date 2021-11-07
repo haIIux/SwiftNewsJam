@@ -19,6 +19,7 @@
 		5C460554273581B5009199E4 /* RSSArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C460553273581B5009199E4 /* RSSArticleView.swift */; };
 		5C460556273581BA009199E4 /* RSSArticle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C460555273581BA009199E4 /* RSSArticle.swift */; };
 		5C4605612735938A009199E4 /* SwiftNewsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4605602735938A009199E4 /* SwiftNewsApp.swift */; };
+		B2063F68273712EB005EA377 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = B2063F67273712EB005EA377 /* SwiftSoup */; };
 		B24D640B27359ED20030C454 /* FeedBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D640A27359ED20030C454 /* FeedBuilder.swift */; };
 		B24D640D2735A31B0030C454 /* FeedErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D640C2735A31B0030C454 /* FeedErrorHandler.swift */; };
 /* End PBXBuildFile section */
@@ -57,6 +58,7 @@
 			files = (
 				00A40FBB2735F579004258A6 /* SwiftyXML in Frameworks */,
 				5C4605492735807D009199E4 /* ComposableArchitecture in Frameworks */,
+				B2063F68273712EB005EA377 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,6 +223,7 @@
 			packageProductDependencies = (
 				5C4605482735807D009199E4 /* ComposableArchitecture */,
 				00A40FBA2735F579004258A6 /* SwiftyXML */,
+				B2063F67273712EB005EA377 /* SwiftSoup */,
 			);
 			productName = SwiftNews;
 			productReference = 5C46051227358025009199E4 /* SwiftNews.app */;
@@ -275,6 +278,7 @@
 			packageReferences = (
 				5C4605472735807D009199E4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 				00A40FB92735F579004258A6 /* XCRemoteSwiftPackageReference "SwiftyXML" */,
+				B2063F66273712EB005EA377 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
 			);
 			productRefGroup = 5C46051327358025009199E4 /* Products */;
 			projectDirPath = "";
@@ -616,6 +620,14 @@
 				minimumVersion = 0.28.1;
 			};
 		};
+		B2063F66273712EB005EA377 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -628,6 +640,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5C4605472735807D009199E4 /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
 			productName = ComposableArchitecture;
+		};
+		B2063F67273712EB005EA377 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B2063F66273712EB005EA377 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

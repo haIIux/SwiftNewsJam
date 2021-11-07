@@ -1,5 +1,7 @@
 import Foundation
 import ComposableArchitecture
+import SwiftSoup
+
 
 struct RSSArticle: Equatable, Identifiable {
     var id: UUID
@@ -9,7 +11,8 @@ struct RSSArticle: Equatable, Identifiable {
     var link: String
     var pubDate: String
     var content: String
-    
+    var document: Document?
+
     var isFavorite: Bool = false
 }
 
@@ -45,3 +48,4 @@ let rssArticleReducer = Reducer<RSSArticle, RSSArticleAction, RSSArticleEnvironm
         return .none
     }
 }
+

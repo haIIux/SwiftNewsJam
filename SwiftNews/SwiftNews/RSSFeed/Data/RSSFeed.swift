@@ -1,5 +1,6 @@
 import ComposableArchitecture
 import SwiftUI
+import SwiftSoup
 
 // MARK: - State
 
@@ -16,6 +17,7 @@ struct RSSFeed: Equatable, Identifiable {
     
     var isFirstLoad: Bool = true
 }
+
 
 // MARK: - Actions
 
@@ -75,7 +77,6 @@ extension RSSFeedEnvironment {
             UserDefaults.standard.set($0.isFavorite, forKey: "favorite.\($0.link)")
         }
     )
-    
 }
 
 // MARK: - Reducer
@@ -145,6 +146,7 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment>
                             link: article.link,
                             pubDate: article.pubDate,
                             content: article.content,
+                            document: article.document,
                             isFavorite: UserDefaults.standard.bool(forKey: "favorite.\(article.link)")
                         )
                     }
@@ -159,4 +161,3 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment>
             
         }
     )
-

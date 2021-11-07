@@ -27,7 +27,7 @@ struct RSSArticleView: View {
                     Link("Swift By Sundell", destination: URL(string: viewStore.link)!)
                         .font(.caption)
                         .padding(.bottom, 5)
-                    Text(viewStore.content)
+                    Text((try? viewStore.document?.text()) ?? viewStore.content)
                         .font(.body)
                 }
                 .padding(.horizontal)
