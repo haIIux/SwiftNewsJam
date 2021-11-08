@@ -10,7 +10,7 @@ struct RSSFeed: Equatable, Identifiable {
     var articles: IdentifiedArrayOf<RSSArticle> = []
     
     var isFetchingData: Bool = false
-    var feed: FeedURL = .hackingwithswift
+    var feed: FeedURL = .sundell
     
     var favoriteArticles: IdentifiedArrayOf<RSSArticle> = []
     var nonFavoriteArticles: IdentifiedArrayOf<RSSArticle> = []
@@ -29,6 +29,8 @@ enum RSSFeedAction: Equatable {
     
     case favoriteArticle(id: RSSArticle.ID, action: RSSArticleAction)
     case nonFavoriteArticle(id: RSSArticle.ID, action: RSSArticleAction)
+    
+    
 }
 
 // MARK: - Environment

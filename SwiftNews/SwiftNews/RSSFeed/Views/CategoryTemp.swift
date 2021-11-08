@@ -7,8 +7,30 @@
 
 import SwiftUI
 
+enum CatTemp: String, CaseIterable {
+    case sundell   = "https://swiftbysundell.com/rss"
+    case sarunw  = "https://sarunw.com/feed.xml"
+    case apple   = "https://developer.apple.com/news/rss/news.rss"
+    case hackingwithswift = "https://www.hackingwithswift.com/articles/rss"
+    
+    var description: String {
+        switch self {
+        case .sundell:
+            return "Swift by Sundell"
+        case .sarunw:
+            return "Sarunw"
+        case .apple:
+            return "Apple"
+        case .hackingwithswift:
+            return "Hacking with Swift"
+        }
+    }
+}
+
 struct CategoryTemp: View {
     var categoryArray = ["SwiftBySundell", "Sarunw", "HackingWithSwift", "Ray Wenderlich", "Apple"]
+    
+    @State var categories: CatTemp
     
     let rows = [
         GridItem(.fixed(50)),
@@ -18,13 +40,17 @@ struct CategoryTemp: View {
     var body: some View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: rows, alignment: .center) {
-                ForEach(categoryArray, id: \.self) { item in
-                    Text(item)
-                        .frame(minWidth: 75, idealWidth: 150, maxWidth: 175, minHeight: 25, idealHeight: 50, maxHeight: 100, alignment: .center)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(lineWidth: 2)
-                    )
+                ForEach(CatTemp.allCases, id: \.self) { item in
+                    Button {
+                        print("Button Tapped")
+                    } label: {
+                        Text(item.description)
+                            .frame(minWidth: 75, idealWidth: 150, maxWidth: 175, minHeight: 25, idealHeight: 50, maxHeight: 100, alignment: .center)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(lineWidth: 2)
+                        )
+                    }
                 }
             }
         }
@@ -34,7 +60,7 @@ struct CategoryTemp: View {
 
 struct CategoryTemp_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryTemp()
+        CategoryTemp(categories: CatTemp.sundell)
     }
 }
 

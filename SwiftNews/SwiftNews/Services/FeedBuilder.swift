@@ -44,7 +44,7 @@ extension FeedURL: FeedBuilder {
     
     func fetch() -> Effect<[RSSArticle], FeedError> {
             URLSession.shared
-                .dataTaskPublisher(for: feedLink)
+            .dataTaskPublisher(for: feedLink)
                 .mapError { _ in
                     FeedError.unknown
                 }
