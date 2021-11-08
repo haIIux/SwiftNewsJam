@@ -20,6 +20,8 @@ protocol FeedBuilder {
 enum FeedURL: String {
     case sundell = "https://swiftbysundell.com/rss"
     case sarunw = "https://sarunw.com/feed.xml"
+    case apple = "https://developer.apple.com/news/rss/news.rss"
+    case hackingwithswift = "https://www.hackingwithswift.com/articles/rss"
 }
 
 extension FeedURL: FeedBuilder {

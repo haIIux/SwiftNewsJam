@@ -28,7 +28,7 @@ struct CategoryTemp: View {
                 }
             }
         }
-        .padding(.horizontal, 5)
+        .padding(.horizontal)
     }
 }
 

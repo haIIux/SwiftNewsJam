@@ -10,10 +10,10 @@ struct SwiftNewsApp: App {
             store: Store(
                 initialState: RSSFeed(
                     id: .init(),
-                    title: "Swift by Sundell",
+                    title: "Hacking with Swift",
                     articles: [],
                     isFetchingData: false,
-                    feed: .sundell
+                    feed: .hackingwithswift
                 ),
                 reducer: rssFeedReducer,
                 environment: .live
