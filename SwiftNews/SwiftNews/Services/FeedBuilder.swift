@@ -22,6 +22,19 @@ enum FeedURL: String {
     case sarunw = "https://sarunw.com/feed.xml"
     case apple = "https://developer.apple.com/news/rss/news.rss"
     case hackingwithswift = "https://www.hackingwithswift.com/articles/rss"
+    
+    var description: String {
+        switch self {
+        case .sundell:
+            return "Swift by Sundell"
+        case .sarunw:
+            return "Sarunw"
+        case .apple:
+            return "Apple"
+        case .hackingwithswift:
+            return "Hacking with Swift"
+        }
+    }
 }
 
 extension FeedURL: FeedBuilder {
