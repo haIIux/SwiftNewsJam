@@ -11,6 +11,7 @@ Right now our goal minimum viable product (MVP) is to simply show the RSS feed i
 - [x] Widget!
 - [ ] Multiple Feed Categories
 
+## Get it [here on TestFlight!](https://testflight.apple.com/join/efB1PNDQ)
 ## Contributors!
 - [Zach Eriksen](https://github.com/0xLeif)
 - [Rob Maltese](https://github.com/haIIux)
