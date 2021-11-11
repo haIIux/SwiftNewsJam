@@ -136,26 +136,29 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment>
                 return .none
                 
             case let .loaded(articles: .success(articles)):
-                state.isFetchingData = false
-                state.articles = IdentifiedArray(
-                    uniqueElements: articles.map { article in
-                        RSSArticle(
-                            id: article.id,
-                            title: article.title,
-                            description: article.description,
-                            link: article.link,
-                            pubDate: article.pubDate,
-                            content: article.content,
-                            document: article.document,
-                            isFavorite: UserDefaults.standard.bool(forKey: "favorite.\(article.link)")
-                        )
-                    }
-                        .sorted { $0.isFavorite && !$1.isFavorite }
-                )
+                            state.isFetchingData = false
+                            state.articles = IdentifiedArray(
+                                uniqueElements: articles.map { article in
+                                    RSSArticle(
+                                        id: article.id,
+                                        title: article.title,
+                                        description: article.description,
+                                        link: article.link,
+                                        pubDate: article.pubDate,
+                                        content: article.content,
+                                        document: article.document,
+                                        isFavorite: UserDefaults.standard.bool(forKey: "favorite.\(article.link)")
+                                    )
+                                }
+                                    .sorted { $0.isFavorite && !$1.isFavorite }
+                            )
+
+            state.favoriteArticles = state.articles.filter(\.isFavorite)
+                            state.nonFavoriteArticles = state.articles.filter { !$0.isFavorite }
+                            
+            return .none
                 
-                return Effect(value: .updateFavoriteSections)
-                
-            case .nonFavoriteArticle, .favoriteArticle:
+            case .favoriteArticle, .nonFavoriteArticle:
                 return .none
             }
             
