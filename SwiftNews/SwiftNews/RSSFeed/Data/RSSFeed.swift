@@ -10,6 +10,7 @@ struct RSSFeed: Equatable, Identifiable {
     var articles: IdentifiedArrayOf<RSSArticle> = []
     
     var isFetchingData: Bool = false
+    #warning("Would like to update line #14 based on the users selection.")
     var feed: FeedURL = .sundell
     
     var favoriteArticles: IdentifiedArrayOf<RSSArticle> = []
@@ -30,6 +31,7 @@ enum RSSFeedAction: Equatable {
     case favoriteArticle(id: RSSArticle.ID, action: RSSArticleAction)
     case nonFavoriteArticle(id: RSSArticle.ID, action: RSSArticleAction)
     
+    #warning("I don't see a need for an action?")
     
 }
 
