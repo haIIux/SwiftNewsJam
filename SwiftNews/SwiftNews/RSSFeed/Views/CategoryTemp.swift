@@ -30,7 +30,7 @@ enum CatTemp: String, CaseIterable {
 struct CategoryTemp: View {
     var categoryArray = ["SwiftBySundell", "Sarunw", "HackingWithSwift", "Ray Wenderlich", "Apple"]
     
-    @State var categories: CatTemp
+    @State var categories: FeedURL
     
     let rows = [
         GridItem(.fixed(50)),
@@ -40,9 +40,9 @@ struct CategoryTemp: View {
     var body: some View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: rows, alignment: .center) {
-                ForEach(CatTemp.allCases, id: \.self) { item in
+                ForEach(FeedURL.allCases, id: \.self) { item in
                     Button {
-                        print("Button Tapped")
+                        print("Button Tapped \(item.description)")
                     } label: {
                         Text(item.description)
                             .frame(minWidth: 75, idealWidth: 150, maxWidth: 175, minHeight: 25, idealHeight: 50, maxHeight: 100, alignment: .center)
@@ -53,14 +53,14 @@ struct CategoryTemp: View {
                     }
                 }
             }
+            .padding(.leading, 5)
         }
-        .padding(.horizontal)
     }
 }
 
 struct CategoryTemp_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryTemp(categories: CatTemp.sundell)
+        CategoryTemp(categories: FeedURL.sundell)
     }
 }
 
