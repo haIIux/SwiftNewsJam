@@ -33,6 +33,7 @@
 		B2063F68273712EB005EA377 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = B2063F67273712EB005EA377 /* SwiftSoup */; };
 		B24D640B27359ED20030C454 /* FeedBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D640A27359ED20030C454 /* FeedBuilder.swift */; };
 		B24D640D2735A31B0030C454 /* FeedErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B24D640C2735A31B0030C454 /* FeedErrorHandler.swift */; };
+		B2732A14274DD2C8008FD7D0 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D461B427389BC900B6A614 /* CategoriesView.swift */; };
 		B2D461B327389AA800B6A614 /* RSSCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D461B227389AA800B6A614 /* RSSCategoryView.swift */; };
 		B2D461B527389BC900B6A614 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2D461B427389BC900B6A614 /* CategoriesView.swift */; };
 /* End PBXBuildFile section */
@@ -448,6 +449,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2732A14274DD2C8008FD7D0 /* CategoriesView.swift in Sources */,
 				899DBF8627385DBF00F41A40 /* RSSArticleView.swift in Sources */,
 				899DBF7427385DA000F41A40 /* SwiftNewsWidget.swift in Sources */,
 				899DBF8327385DB800F41A40 /* FeedErrorHandler.swift in Sources */,

@@ -11,7 +11,6 @@ import ComposableArchitecture
 struct CategoryState: Equatable {
     var feed: FeedURL
     var availableFeeds: [FeedURL]
-    
 }
 
 enum CategoryActions: Equatable {

@@ -38,6 +38,7 @@ struct RSSFeed: Equatable, Identifiable {
 // MARK: - Actions
 
 enum RSSFeedAction: Equatable {
+
     case didAppear
     case updateFavoriteSections
     case fetchArticles
@@ -156,8 +157,8 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment>
                 
             case .loaded(articles: .failure):
                 state.isFetchingData = false
-                // TODO: Handle failure
-                return .none
+                state.articles = []
+                return Effect(value: .updateFavoriteSections)
                 
             case let .loaded(articles: .success(articles)):
                 state.isFetchingData = false
@@ -176,11 +177,17 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment>
                     }
                         .sorted { $0.isFavorite && !$1.isFavorite }
                 )
+                state.favoriteArticles = state.articles.filter(\.isFavorite)
+                state.nonFavoriteArticles = state.articles.filter { $0.isFavorite }
                 
                 return Effect(value: .updateFavoriteSections)
                 
-            case .nonFavoriteArticle, .favoriteArticle, .category:
+            case .nonFavoriteArticle, .favoriteArticle:
                 return .none
+                
+            case .category :
+                state.isFirstLoad = true
+                return Effect(value: .didAppear)
             }
         }
     )
