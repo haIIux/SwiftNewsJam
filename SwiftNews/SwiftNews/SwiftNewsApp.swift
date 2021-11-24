@@ -13,7 +13,8 @@ struct SwiftNewsApp: App {
                     title: "Hacking with Swift",
                     articles: [],
                     isFetchingData: false,
-                    feed: .hackingwithswift
+                    feed: .hackingwithswift,
+                    availableFeeds: FeedURL.allCases
                 ),
                 reducer: rssFeedReducer,
                 environment: .live

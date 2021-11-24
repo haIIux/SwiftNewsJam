@@ -10,8 +10,23 @@ struct RSSFeed: Equatable, Identifiable {
     var articles: IdentifiedArrayOf<RSSArticle> = []
     
     var isFetchingData: Bool = false
-    #warning("Would like to update line #14 based on the users selection.")
+    
+    // State for Category View.
     var feed: FeedURL = .sundell
+    var availableFeeds: [FeedURL]
+    var categoryState: CategoryState {
+        get {
+            CategoryState(
+                feed: self.feed,
+                availableFeeds: self.availableFeeds
+            )
+        }
+        
+        set {
+            self.feed = newValue.feed
+            self.availableFeeds = newValue.availableFeeds
+        }
+    }
     
     var favoriteArticles: IdentifiedArrayOf<RSSArticle> = []
     var nonFavoriteArticles: IdentifiedArrayOf<RSSArticle> = []
@@ -31,8 +46,7 @@ enum RSSFeedAction: Equatable {
     case favoriteArticle(id: RSSArticle.ID, action: RSSArticleAction)
     case nonFavoriteArticle(id: RSSArticle.ID, action: RSSArticleAction)
     
-    #warning("I don't see a need for an action?")
-    
+    case category(CategoryActions)
 }
 
 // MARK: - Environment
@@ -99,6 +113,12 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment>
                 }
             ),
         
+        categoryReducer
+            .pullback(state: \RSSFeed.categoryState,
+                      action: /RSSFeedAction.category,
+                      environment: {_ in ()}
+                     ),
+        
         rssArticleReducer
             .forEach(
                 state: \RSSFeed.nonFavoriteArticles,
@@ -159,9 +179,8 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment>
                 
                 return Effect(value: .updateFavoriteSections)
                 
-            case .nonFavoriteArticle, .favoriteArticle:
+            case .nonFavoriteArticle, .favoriteArticle, .category:
                 return .none
             }
-            
         }
     )

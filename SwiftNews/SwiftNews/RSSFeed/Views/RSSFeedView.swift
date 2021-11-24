@@ -95,7 +95,8 @@ struct RSSFeedView_Preview: PreviewProvider {
                         articles: [
                             
                         ],
-                        isFetchingData: false
+                        isFetchingData: false,
+                        availableFeeds: FeedURL.allCases
                     ),
                     reducer: rssFeedReducer,
                     environment: RSSFeedEnvironment(
