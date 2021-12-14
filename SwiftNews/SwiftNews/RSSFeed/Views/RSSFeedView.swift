@@ -3,14 +3,20 @@ import SwiftUI
 
 struct RSSFeedView: View {
     let store: Store<RSSFeed, RSSFeedAction>
-    
+
     var body: some View {
         WithViewStore(store) { viewStore in
             VStack {
-                if viewStore.isFetchingData && viewStore.articles.isEmpty {
+                CategoriesView(store: store.scope(state: \.categoryState, action: RSSFeedAction.category))
+                    .frame(height: 110)
+                    .padding(.vertical, 5)
+
+                if viewStore.isFetchingData {
+                    Spacer()
                     ProgressView()
+                    Spacer()
                 } else {
-                    Form {
+                    List {
                         if !viewStore.favoriteArticles.isEmpty {
                             Section(
                                 content: {
@@ -44,12 +50,13 @@ struct RSSFeedView: View {
                         }
                         
                         if !viewStore.nonFavoriteArticles.isEmpty {
-                            Section {
-                                ForEachStore(
-                                    store.scope(
-                                        state: \.nonFavoriteArticles,
-                                        action: RSSFeedAction.nonFavoriteArticle
-                                    ),
+                            Section (
+                                content: {
+                                    ForEachStore(
+                                        store.scope(
+                                            state: \.nonFavoriteArticles,
+                                            action: RSSFeedAction.nonFavoriteArticle
+                                        ),
                                     content: { rssArticleStore in
                                         WithViewStore(rssArticleStore) { rssArticleViewStore in
                                             NavigationLink(destination: RSSArticleView(store: rssArticleStore)) {
@@ -68,9 +75,14 @@ struct RSSFeedView: View {
                                         }
                                     }
                                 )
-                            }
+                            },
+                                header: {
+                                    Text("Articles")
+                                }
+                            )
                         }
                     }
+                    .listStyle(.plain)
                 }
             }
             .onAppear {
@@ -79,7 +91,7 @@ struct RSSFeedView: View {
             .refreshable {
                 viewStore.send(.fetchArticles)
             }
-            .navigationTitle(viewStore.title)
+            .navigationTitle("SwiftNews")
         }
     }
 }
@@ -95,7 +107,8 @@ struct RSSFeedView_Preview: PreviewProvider {
                         articles: [
                             
                         ],
-                        isFetchingData: false
+                        isFetchingData: false,
+                        availableFeeds: FeedURL.allCases
                     ),
                     reducer: rssFeedReducer,
                     environment: RSSFeedEnvironment(

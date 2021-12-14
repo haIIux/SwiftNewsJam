@@ -17,9 +17,27 @@ protocol FeedBuilder {
     func fetch() -> Effect<[RSSArticle], FeedError>
 }
 
-enum FeedURL: String {
+enum FeedURL: String, CaseIterable {
     case sundell = "https://swiftbysundell.com/rss"
-    case sarunw = "https://sarunw.com/feed.xml"
+//    case sarunw = "https://sarunw.com/feed.xml"
+//    case apple = "https://developer.apple.com/news/rss/news.rss"
+    case hackingwithswift = "https://www.hackingwithswift.com/articles/rss"
+    case donnywals = "https://www.donnywals.com/feed/"
+    
+    var description: String {
+        switch self {
+        case .sundell:
+            return "Swift by Sundell"
+//        case .sarunw:
+//            return "Sarunw"
+//        case .apple:
+//            return "Apple"
+        case .hackingwithswift:
+            return "Hacking with Swift"
+        case .donnywals:
+            return "Donny Wals"
+        }
+    }
 }
 
 extension FeedURL: FeedBuilder {
@@ -29,7 +47,7 @@ extension FeedURL: FeedBuilder {
     
     func fetch() -> Effect<[RSSArticle], FeedError> {
             URLSession.shared
-                .dataTaskPublisher(for: feedLink)
+            .dataTaskPublisher(for: feedLink)
                 .mapError { _ in
                     FeedError.unknown
                 }

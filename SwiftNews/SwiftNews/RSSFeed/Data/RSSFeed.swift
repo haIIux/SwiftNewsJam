@@ -10,7 +10,23 @@ struct RSSFeed: Equatable, Identifiable {
     var articles: IdentifiedArrayOf<RSSArticle> = []
     
     var isFetchingData: Bool = false
+    
+    // State for Category View.
     var feed: FeedURL = .sundell
+    var availableFeeds: [FeedURL]
+    var categoryState: CategoryState {
+        get {
+            CategoryState(
+                feed: self.feed,
+                availableFeeds: self.availableFeeds
+            )
+        }
+        
+        set {
+            self.feed = newValue.feed
+            self.availableFeeds = newValue.availableFeeds
+        }
+    }
     
     var favoriteArticles: IdentifiedArrayOf<RSSArticle> = []
     var nonFavoriteArticles: IdentifiedArrayOf<RSSArticle> = []
@@ -22,6 +38,7 @@ struct RSSFeed: Equatable, Identifiable {
 // MARK: - Actions
 
 enum RSSFeedAction: Equatable {
+
     case didAppear
     case updateFavoriteSections
     case fetchArticles
@@ -29,6 +46,8 @@ enum RSSFeedAction: Equatable {
     
     case favoriteArticle(id: RSSArticle.ID, action: RSSArticleAction)
     case nonFavoriteArticle(id: RSSArticle.ID, action: RSSArticleAction)
+    
+    case category(CategoryActions)
 }
 
 // MARK: - Environment
@@ -95,6 +114,12 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment>
                 }
             ),
         
+        categoryReducer
+            .pullback(state: \RSSFeed.categoryState,
+                      action: /RSSFeedAction.category,
+                      environment: {_ in ()}
+                     ),
+        
         rssArticleReducer
             .forEach(
                 state: \RSSFeed.nonFavoriteArticles,
@@ -132,8 +157,8 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment>
                 
             case .loaded(articles: .failure):
                 state.isFetchingData = false
-                // TODO: Handle failure
-                return .none
+                state.articles = []
+                return Effect(value: .updateFavoriteSections)
                 
             case let .loaded(articles: .success(articles)):
                 state.isFetchingData = false
@@ -152,6 +177,8 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment>
                     }
                         .sorted { $0.isFavorite && !$1.isFavorite }
                 )
+                state.favoriteArticles = state.articles.filter(\.isFavorite)
+                state.nonFavoriteArticles = state.articles.filter { $0.isFavorite }
                 
                 state.favoriteArticles = state.articles.filter(\.isFavorite)
                 state.nonFavoriteArticles = state.articles.filter { !$0.isFavorite }
@@ -160,7 +187,10 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment>
                 
             case .favoriteArticle, .nonFavoriteArticle:
                 return .none
+                
+            case .category :
+                state.isFirstLoad = true
+                return Effect(value: .didAppear)
             }
-            
         }
     )
