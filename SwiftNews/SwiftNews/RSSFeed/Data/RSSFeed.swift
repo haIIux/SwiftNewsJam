@@ -153,9 +153,12 @@ let rssFeedReducer = Reducer<RSSFeed, RSSFeedAction, RSSFeedEnvironment>
                         .sorted { $0.isFavorite && !$1.isFavorite }
                 )
                 
-                return Effect(value: .updateFavoriteSections)
+                state.favoriteArticles = state.articles.filter(\.isFavorite)
+                state.nonFavoriteArticles = state.articles.filter { !$0.isFavorite }
                 
-            case .nonFavoriteArticle, .favoriteArticle:
+                return .none
+                
+            case .favoriteArticle, .nonFavoriteArticle:
                 return .none
             }
             
